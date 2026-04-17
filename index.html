@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vadamihad — Agronomy & Precision Agriculture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F4EE;
+    --white: #FDFCFA;
+    --ink: #1A1A18;
+    --ink-soft: #3A3A36;
+    --ink-muted: #7A7A72;
+    --ink-faint: #BDBDB5;
+    --green: #2D5A27;
+    --green-mid: #4A7C43;
+    --green-light: #C8DEC5;
+    --green-pale: #EBF3EA;
+    --accent: #8B6914;
+    --accent-pale: #F5EDD6;
+    --border: rgba(26,26,24,0.1);
+    --border-soft: rgba(26,26,24,0.06);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(253,252,250,0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border-soft);
+    transition: padding 0.3s ease;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+  .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+  .hamburger span { display: block; width: 22px; height: 1px; background: var(--ink); transition: 0.3s; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8rem 4rem 5rem 3rem;
+    background: var(--cream);
+    position: relative;
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--green-mid);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6vw, 80px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 1.75rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--green);
+  }
+  .hero-tagline {
+    font-size: 14px;
+    color: var(--ink-muted);
+    max-width: 380px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--green);
+    text-decoration: none;
+    border-bottom: 1px solid var(--green-light);
+    padding-bottom: 3px;
+    transition: border-color 0.2s, gap 0.2s;
+  }
+  .hero-cta:hover { gap: 14px; border-color: var(--green); }
+  .hero-right {
+    background: var(--green);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 5rem 3rem;
+    overflow: hidden;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .hero-right::after {
+    content: '';
+    position: absolute;
+    bottom: 80px; left: 40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+  .hero-stats {
+    position: relative; z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    width: 100%;
+  }
+  .stat-box {
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.06);
+    border: 0.5px solid rgba(255,255,255,0.1);
+  }
+  .stat-box:first-child { border-radius: 2px 0 0 0; }
+  .stat-box:nth-child(2) { border-radius: 0 2px 0 0; }
+  .stat-box:nth-child(3) { border-radius: 0 0 0 2px; }
+  .stat-box:last-child { border-radius: 0 0 2px 0; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.95);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 3rem;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .scroll-hint::after {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--ink-faint);
+    animation: scrollline 2s ease-in-out infinite;
+  }
+  @keyframes scrollline {
+    0%, 100% { width: 40px; opacity: 0.4; }
+    50% { width: 60px; opacity: 1; }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 3rem; }
+  .section-inner { max-width: 960px; margin: 0 auto; }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .section-line {
+    flex: 1;
+    height: 0.5px;
+    background: var(--border);
+    align-self: center;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-left {}
+  .about-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--green-pale);
+    border: 2px solid var(--green-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--green);
+    margin-bottom: 1.5rem;
+  }
+  .about-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+  .about-role {
+    font-size: 13px;
+    color: var(--green-mid);
+    margin-bottom: 1.5rem;
+  }
+  .about-meta { list-style: none; }
+  .about-meta li {
+    font-size: 13px;
+    color: var(--ink-muted);
+    padding: 6px 0;
+    border-bottom: 0.5px solid var(--border-soft);
+    display: flex;
+    gap: 8px;
+  }
+  .about-meta li strong { color: var(--ink-soft); font-weight: 500; min-width: 80px; }
+  .about-bio {
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--ink-soft);
+  }
+  .about-bio p + p { margin-top: 1.25rem; }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--cream); }
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+  .exp-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 2rem 0;
+    border-bottom: 0.5px solid var(--border);
+    transition: background 0.2s;
+  }
+  .exp-row:first-child { border-top: 0.5px solid var(--border); }
+  .exp-date {
+    font-size: 12px;
+    color: var(--ink-muted);
+    letter-spacing: 0.05em;
+    padding-top: 3px;
+  }
+  .exp-company {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 4px;
+  }
+  .exp-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .exp-desc {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.7;
+  }
+  .exp-tag {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 11px;
+    letter-spacing: 0.07em;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: var(--green-pale);
+    color: var(--green);
+    border: 0.5px solid var(--green-light);
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--white); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5px;
+    background: var(--border-soft);
+    border: 0.5px solid var(--border);
+  }
+  .project-card {
+    background: var(--white);
+    padding: 2rem;
+    transition: background 0.2s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--green);
+    transition: height 0.3s ease;
+  }
+  .project-card:hover { background: var(--green-pale); }
+  .project-card:hover::before { height: 100%; }
+  .project-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--ink-faint);
+    margin-bottom: 1rem;
+  }
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+  .project-desc {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .project-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    background: var(--accent-pale);
+    color: var(--accent);
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+  .projects-cta {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 0.5px dashed var(--border);
+    border-radius: 2px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  /* ── CERTIFICATIONS ── */
+  #certifications { background: var(--ink); color: var(--cream); }
+  #certifications .section-title { color: var(--cream); }
+  #certifications .section-num { color: rgba(247,244,238,0.25); }
+  #certifications .section-line { background: rgba(247,244,238,0.1); }
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .cert-card {
+    background: var(--ink);
+    padding: 1.75rem;
+    transition: background 0.2s;
+  }
+  .cert-card:hover { background: #222220; }
+  .cert-issuer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 0.75rem;
+  }
+  .cert-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(247,244,238,0.9);
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+  }
+  .cert-meta {
+    font-size: 11px;
+    color: rgba(247,244,238,0.3);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--cream); }
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+  .skills-group-title {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 1.5rem;
+  }
+  .skill-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 0.5px solid var(--border-soft);
+  }
+  .skill-name {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .skill-bar {
+    width: 100px;
+    height: 2px;
+    background: var(--border);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .skill-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 1px;
+    animation: grow 1.2s ease forwards;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  @keyframes grow { to { transform: scaleX(1); } }
+  .soft-pill {
+    display: inline-block;
+    font-size: 13px;
+    padding: 8px 16px;
+    border: 0.5px solid var(--border);
+    border-radius: 100px;
+    color: var(--ink-soft);
+    margin: 4px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .soft-pill:hover { background: var(--green); color: white; border-color: var(--green); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--white); }
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .contact-sub {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.8;
+  }
+  .contact-links { list-style: none; }
+  .contact-links li {
+    padding: 1rem 0;
+    border-bottom: 0.5px solid var(--border-soft);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .contact-links li:first-child { border-top: 0.5px solid var(--border-soft); }
+  .contact-type {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    width: 80px;
+  }
+  .contact-value {
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  .contact-value:hover { color: var(--green); }
+  .contact-arrow { color: var(--ink-faint); font-size: 12px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(247,244,238,0.3);
+    padding: 2rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: rgba(247,244,238,0.6);
+    font-weight: 300;
+  }
+
+  /* ── FADE IN ANIMATION ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 58px; left: 0; right: 0;
+      background: rgba(253,252,250,0.97);
+      padding: 1.5rem;
+      gap: 1.25rem;
+      border-bottom: 0.5px solid var(--border-soft);
+    }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 7rem 1.5rem 3rem; }
+    .hero-right { padding: 3rem 1.5rem; min-height: 280px; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .exp-row { grid-template-columns: 1fr; gap: 0.5rem; }
+    .skills-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Vadamihad</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-label">Agronomy · Precision Agriculture</div>
+    <h1>Future<br><em>AI</em><br>Agronomist</h1>
+    <p class="hero-tagline">
+      Bridging Artificial Intelligence, IoT, and Data Science with the science of crops — building a smarter, more resilient food system.
+    </p>
+    <a href="#about" class="hero-cta">Explore my work →</a>
+    <div class="scroll-hint">Scroll</div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-box">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years Active</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Certifications</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">UGM</div>
+        <div class="stat-label">Universitas</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">IoT</div>
+        <div class="stat-label">AI · GIS · Data</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-num">01</span>
+      <h2 class="section-title">About</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid fade-in">
+      <div class="about-left">
+        <div class="about-avatar">VM</div>
+        <div class="about-name">Vadamihad</div>
+        <div class="about-role">Undergraduate Agronomy · UGM</div>
+        <ul class="about-meta">
+          <li><strong>University</strong> Universitas Gadjah Mada</li>
+          <li><strong>Major</strong> Agronomi</li>
+          <li><strong>Faculty</strong> Pertanian</li>
+          <li><strong>Location</strong> Yogyakarta, Indonesia</li>
+          <li><strong>Focus</strong> Precision Agriculture</li>
+        </ul>
+      </div>
+      <div class="about-bio">
+        <p>Agronomy student at Universitas Gadjah Mada with a strong interest in precision agriculture and data-driven farming systems.</p>
+        <p>Currently developing skills in Geographic Information Systems (GIS), Artificial Intelligence (AI), and Internet of Things (IoT) to support smarter land management, crop monitoring, and sustainable agricultural production.</p>
+        <p>Passionate about applying technology to improve productivity, resource efficiency, and climate resilience in modern agricultural systems — bridging the gap between traditional agronomic knowledge and cutting-edge digital tools.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-row fade-in">
+        <div class="exp-date">Feb 2026 – Present</div>
+        <div>
+          <div class="exp-company">PT. Perkebunan Tambi</div>
+          <div class="exp-title">Plantation Intern</div>
+          <div class="exp-desc">On-site internship at a tea and coffee plantation in Wonosobo, Central Java. Gaining hands-on experience in plantation management and agricultural operations.</div>
+          <span class="exp-tag">On-site · Wonosobo</span>
+        </div>
+      </div>
+
+      <div class="exp-row fade-in">
+        <div class="exp-date">Jun 2025 – Jul 2025</div>
+        <div>
+          <div class="exp-company">Dinas Pertanian Kabupaten Wonosobo</div>
+          <div class="exp-title">Office Staff Intern</div>
+          <div class="exp-desc">Internship at the Wonosobo Regency Agriculture Office, supporting administrative and field coordination tasks related to local agricultural programs.</div>
+          <span class="exp-tag">2 months</span>
+        </div>
+      </div>
+
+      <div class="exp-row fade-in">
+        <div class="exp-date">Sep 2025</div>
+        <div>
+          <div class="exp-company">IMAGRO UGM – Ministry of Social Affairs</div>
+          <div class="exp-title">Staff DDD Environment Care</div>
+          <div class="exp-desc">Contributed to environmental awareness programs and social initiatives under the student organization's ministry.</div>
+          <span class="exp-tag">1 month</span>
+        </div>
+      </div>
+
+      <div class="exp-row fade-in">
+        <div class="exp-date">May 2024 – Present</div>
+        <div>
+          <div class="exp-company">IMAGRO UGM</div>
+          <div class="exp-title">Expert Staff – Ministry of Interests & Talents</div>
+          <div class="exp-desc">Serving as expert staff within IMAGRO (Ikatan Mahasiswa Agronomi dan Pemuliaan Tanaman UGM), focusing on developing student interests and talents in agronomy.</div>
+          <span class="exp-tag">Organisasi · 2+ years</span>
+        </div>
+      </div>
+
+      <div class="exp-row fade-in">
+        <div class="exp-date">Oct 2024 – Present</div>
+        <div>
+          <div class="exp-company">IMAGRO UGM</div>
+          <div class="exp-title">Official Committee of Security – AGROGAME</div>
+          <div class="exp-desc">Responsible for security coordination at AGROGAME, a large-scale agronomy event organized by IMAGRO UGM.</div>
+          <span class="exp-tag">1 yr 7 mos</span>
+        </div>
+      </div>
+
+      <div class="exp-row fade-in">
+        <div class="exp-date">KKN-PPM</div>
+        <div>
+          <div class="exp-company">Universitas Gadjah Mada</div>
+          <div class="exp-title">KKN-PPM Bumi Hiri</div>
+          <div class="exp-desc">Community service and empowerment program (Kuliah Kerja Nyata – Pembelajaran Pemberdayaan Masyarakat), applying academic knowledge in real community settings.</div>
+          <span class="exp-tag">Community Service</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid fade-in" id="projects-grid">
+
+      <!-- Sample project cards — replace with real data -->
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <div class="project-title">Smart Crop Monitoring with IoT</div>
+        <div class="project-desc">Sample project — replace with your real project description. Deployed sensor-based monitoring system for real-time crop health assessment.</div>
+        <div class="project-tags">
+          <span class="project-tag">IoT</span>
+          <span class="project-tag">Precision Agriculture</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <div class="project-title">GIS-Based Land Suitability Analysis</div>
+        <div class="project-desc">Sample project — replace with your real project description. Spatial analysis using GIS tools to assess agricultural land suitability in a study area.</div>
+        <div class="project-tags">
+          <span class="project-tag">GIS</span>
+          <span class="project-tag">Spatial Analysis</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="projects-cta fade-in">
+      More projects coming soon — stay tuned.
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Certifications</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="cert-grid fade-in">
+
+      <div class="cert-card">
+        <div class="cert-issuer-badge">IBM</div>
+        <div class="cert-card-title">Introduction to Artificial Intelligence (AI)</div>
+        <div class="cert-meta">Jul 2025 · ID: SATUM6NKSI6G</div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer-badge">University of Michigan</div>
+        <div class="cert-card-title">GIS: Geographic Information Systems for Sustainability</div>
+        <div class="cert-meta">Jul 2025 · ID: M2QA0AXS242K</div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer-badge">EDUCBA</div>
+        <div class="cert-card-title">IoT Enabled Farming</div>
+        <div class="cert-meta">Jul 2025 · ID: WZ7M9NYSUQ9H</div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer-badge">Google · Coursera</div>
+        <div class="cert-card-title">Foundations: Data, Data, Everywhere</div>
+        <div class="cert-meta">Jun 2025 · ID: O8Z6Q6DHV78K</div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer-badge">Coursera</div>
+        <div class="cert-card-title">Application of Data Analysis in Business with R Programming</div>
+        <div class="cert-meta">Oct 2022 · ID: NRKAXQXJ326W · RStudio</div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer-badge">Coursera</div>
+        <div class="cert-card-title">Prepare, Clean, Transform, and Load Data using Power BI</div>
+        <div class="cert-meta">Oct 2022 · ID: K58NVZRCZT7S · Microsoft Power BI</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-layout fade-in">
+      <div>
+        <div class="skills-group-title">Technical Skills</div>
+        <div class="skill-item">
+          <span class="skill-name">Agronomy</span>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">GIS</span>
+          <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">RStudio / R</span>
+          <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Microsoft Power BI</span>
+          <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">AI / Machine Learning</span>
+          <div class="skill-bar"><div class="skill-fill" style="width:55%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">IoT Enabled Farming</span>
+          <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Microsoft Office</span>
+          <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="skills-group-title">Soft Skills</div>
+        <div style="margin-top:-4px">
+          <span class="soft-pill">Leadership</span>
+          <span class="soft-pill">Team Coordination</span>
+          <span class="soft-pill">Data Analysis</span>
+          <span class="soft-pill">Critical Thinking</span>
+          <span class="soft-pill">Communication</span>
+          <span class="soft-pill">Event Management</span>
+          <span class="soft-pill">Research</span>
+          <span class="soft-pill">Problem Solving</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-layout fade-in">
+      <div>
+        <p class="contact-intro">Let's connect and grow something together.</p>
+        <p class="contact-sub">Open to collaboration on research, precision agriculture projects, or any intersection of agronomy and technology.</p>
+      </div>
+      <div>
+        <ul class="contact-links">
+          <li>
+            <span class="contact-type">University</span>
+            <span class="contact-value">Universitas Gadjah Mada</span>
+            <span class="contact-arrow">↗</span>
+          </li>
+          <li>
+            <span class="contact-type">Organization</span>
+            <span class="contact-value">IMAGRO UGM</span>
+            <span class="contact-arrow">↗</span>
+          </li>
+          <li>
+            <span class="contact-type">LinkedIn</span>
+            <a href="#" class="contact-value">Add your LinkedIn URL</a>
+            <span class="contact-arrow">↗</span>
+          </li>
+          <li>
+            <span class="contact-type">Email</span>
+            <a href="mailto:your@email.com" class="contact-value">Add your email</a>
+            <span class="contact-arrow">↗</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Vadamihad</span>
+  <span>Agronomy · UGM · Yogyakarta</span>
+  <span id="year">2025</span>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function toggleNav() {
+    document.getElementById('nav-links').classList.toggle('open');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  const skillFills = document.querySelectorAll('.skill-fill');
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+      }
+    });
+  }, { threshold: 0.3 });
+  skillFills.forEach(fill => {
+    fill.style.animationPlayState = 'paused';
+    skillObserver.observe(fill);
+  });
+</script>
+</body>
+</html>
