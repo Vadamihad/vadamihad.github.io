@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vadamihad — Agronomy & Precision Agriculture</title>
+<meta name="description" content="Vadamihad — Agronomy student at Universitas Gadjah Mada. Bridging AI, IoT, and Data Science with sustainable agriculture and precision farming.">
+<meta name="keywords" content="Vadamihad, Agronomy, UGM, Precision Agriculture, GIS, IoT, AI, Data Science, Sustainable Farming">
+<meta name="author" content="Vadamihad">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://vadamihad.github.io">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vadamihad.github.io">
+<meta property="og:title" content="Vadamihad — Agronomy & Precision Agriculture">
+<meta property="og:description" content="Agronomy student at UGM bridging AI, IoT, and Data Science with sustainable agriculture.">
+<meta property="og:image" content="https://vadamihad.github.io/og-image.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vadamihad — Agronomy & Precision Agriculture">
+<meta name="twitter:description" content="Agronomy student at UGM bridging AI, IoT, and Data Science with sustainable agriculture.">
+
+<!-- JSON-LD Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Vadamihad",
+  "url": "https://vadamihad.github.io",
+  "jobTitle": "Agronomy Student",
+  "worksFor": {"@type": "Organization", "name": "Universitas Gadjah Mada"},
+  "alumniOf": {"@type": "Organization", "name": "Universitas Gadjah Mada"},
+  "knowsAbout": ["Agronomy","Precision Agriculture","GIS","Artificial Intelligence","IoT","Data Analysis"],
+  "sameAs": ["https://linkedin.com/in/vadamihad","https://github.com/vadamihad"]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ─────────────────────────────────────────
+   TOKENS
+───────────────────────────────────────── */
+:root {
+  --bg:          #FAFAF8;
+  --bg-2:        #F3F2EE;
+  --bg-3:        #ECEAE4;
+  --surface:     #FFFFFF;
+  --border:      rgba(0,0,0,0.07);
+  --border-2:    rgba(0,0,0,0.12);
+  --ink:         #111110;
+  --ink-2:       #3C3C39;
+  --ink-3:       #6E6E69;
+  --ink-4:       #A8A89F;
+  --accent:      #2A5C22;
+  --accent-2:    #3D7A32;
+  --accent-pale: #EBF4E9;
+  --accent-mid:  #B8D9B4;
+  --gold:        #7A5C1E;
+  --gold-pale:   #F5EDD6;
+  --r:           10px;
+  --r-lg:        16px;
+  --r-xl:        24px;
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow:      0 4px 16px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-lg:   0 12px 40px rgba(0,0,0,0.09), 0 4px 12px rgba(0,0,0,0.05);
+  --trans:       all 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="dark"] {
+  --bg:          #111110;
+  --bg-2:        #191918;
+  --bg-3:        #222220;
+  --surface:     #1C1C1B;
+  --border:      rgba(255,255,255,0.07);
+  --border-2:    rgba(255,255,255,0.12);
+  --ink:         #F0EFE9;
+  --ink-2:       #C8C7C0;
+  --ink-3:       #8A8A82;
+  --ink-4:       #555550;
+  --accent:      #5FA854;
+  --accent-2:    #76BF6A;
+  --accent-pale: #1A2E18;
+  --accent-mid:  #2D4D28;
+  --gold:        #C9963A;
+  --gold-pale:   #2A2010;
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.3);
+  --shadow:      0 4px 16px rgba(0,0,0,0.35);
+  --shadow-lg:   0 12px 40px rgba(0,0,0,0.45);
+}
+
+/* ─────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+ul { list-style: none; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+/* ─────────────────────────────────────────
+   NAV
+───────────────────────────────────────── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem;
+  background: rgba(250,250,248,0.8);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid var(--border);
+  transition: var(--trans);
+}
+[data-theme="dark"] .nav { background: rgba(17,17,16,0.85); }
+.nav-logo {
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.nav-logo span { color: var(--accent); font-style: italic; }
+.nav-links {
+  display: flex; align-items: center; gap: 0.25rem;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-3);
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: var(--trans);
+  letter-spacing: 0.01em;
+}
+.nav-links a:hover { color: var(--ink); background: var(--bg-2); }
+.nav-right { display: flex; align-items: center; gap: 0.75rem; }
+.theme-btn {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border-2);
+  background: var(--surface);
+  color: var(--ink-3);
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--trans);
+  box-shadow: var(--shadow-sm);
+}
+.theme-btn:hover { color: var(--ink); border-color: var(--border-2); }
+.theme-btn svg { width: 15px; height: 15px; }
+.nav-cta {
+  font-size: 13px; font-weight: 500;
+  padding: 7px 16px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--bg);
+  border: 1px solid var(--ink);
+  transition: var(--trans);
+  letter-spacing: 0.01em;
+}
+.nav-cta:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.hamburger {
+  display: none; flex-direction: column; gap: 4px;
+  width: 36px; height: 36px;
+  align-items: center; justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--border-2);
+  background: var(--surface);
+}
+.hamburger span { display: block; width: 16px; height: 1.5px; background: var(--ink-2); border-radius: 1px; transition: var(--trans); }
+.mobile-menu {
+  display: none;
+  position: fixed; top: 60px; left: 0; right: 0; z-index: 998;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  flex-direction: column; gap: 4px;
+  box-shadow: var(--shadow);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 14px; color: var(--ink-2);
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: var(--trans);
+}
+.mobile-menu a:hover { background: var(--bg-2); color: var(--ink); }
+
+/* ─────────────────────────────────────────
+   LAYOUT
+───────────────────────────────────────── */
+.container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+.section { padding: 6rem 0; }
+.section-sm { padding: 4rem 0; }
+
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding-top: 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(42,92,34,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+[data-theme="dark"] .hero::before { background: radial-gradient(circle, rgba(95,168,84,0.07) 0%, transparent 70%); }
+.hero-inner { display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; width: 100%; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-pale);
+  border: 1px solid var(--accent-mid);
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.04em;
+}
+.hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 400;
+  line-height: 1.0;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-sub {
+  font-size: 15px; color: var(--ink-3);
+  max-width: 460px; line-height: 1.75;
+  margin-bottom: 2rem;
+}
+.hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 500;
+  padding: 9px 18px; border-radius: 9px;
+  transition: var(--trans); letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--ink); color: var(--bg);
+  border: 1px solid var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn-secondary {
+  background: var(--surface); color: var(--ink-2);
+  border: 1px solid var(--border-2);
+  box-shadow: var(--shadow-sm);
+}
+.btn-secondary:hover { border-color: var(--accent-mid); color: var(--accent); transform: translateY(-1px); box-shadow: var(--shadow); }
+.hero-avatar {
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: var(--accent-pale);
+  border: 2px solid var(--accent-mid);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Instrument Serif', serif;
+  font-size: 44px; color: var(--accent);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-lg);
+  transition: var(--trans);
+}
+.hero-avatar:hover { transform: scale(1.03); }
+
+/* ─────────────────────────────────────────
+   CURRENTLY
+───────────────────────────────────────── */
+.currently { padding: 2rem 0 5rem; }
+.currently-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.currently-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--trans);
+}
+.currently-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); border-color: var(--border-2); }
+.c-label {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-4); margin-bottom: 6px;
+  display: flex; align-items: center; gap: 6px;
+}
+.c-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+.c-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 2px; line-height: 1.35; }
+.c-sub { font-size: 12px; color: var(--ink-3); }
+
+/* ─────────────────────────────────────────
+   SECTION HEADERS
+───────────────────────────────────────── */
+.sec-head { margin-bottom: 2.5rem; }
+.sec-eyebrow {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sec-eyebrow::after {
+  content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--accent-mid);
+}
+.sec-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(28px, 3.5vw, 38px);
+  font-weight: 400; color: var(--ink);
+  letter-spacing: -0.02em; line-height: 1.1;
+}
+.sec-title em { font-style: italic; color: var(--accent); }
+
+/* ─────────────────────────────────────────
+   PROJECTS
+───────────────────────────────────────── */
+.projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  transition: var(--trans);
+  box-shadow: var(--shadow-sm);
+  display: flex; flex-direction: column;
+}
+.project-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); border-color: var(--border-2); }
+.project-thumb {
+  height: 180px;
+  background: var(--bg-2);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.project-thumb-inner {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Instrument Serif', serif;
+  font-size: 48px; opacity: 0.15;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  transition: var(--trans);
+}
+.project-card:hover .project-thumb-inner { opacity: 0.22; transform: scale(1.05); }
+.project-thumb-badge {
+  position: absolute; top: 12px; left: 12px;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 100px;
+  background: var(--surface); color: var(--ink-3);
+  border: 1px solid var(--border-2);
+  backdrop-filter: blur(8px);
+}
+.project-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+.project-role {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-4); margin-bottom: 6px;
+}
+.project-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px; font-weight: 400;
+  color: var(--ink); letter-spacing: -0.01em;
+  line-height: 1.2; margin-bottom: 8px;
+}
+.project-desc { font-size: 13px; color: var(--ink-3); line-height: 1.65; flex: 1; }
+.project-stack { display: flex; flex-wrap: wrap; gap: 5px; margin: 1rem 0; }
+.chip {
+  font-size: 11px; font-weight: 500;
+  padding: 3px 9px; border-radius: 5px;
+  background: var(--bg-2);
+  color: var(--ink-3);
+  border: 1px solid var(--border);
+  letter-spacing: 0.02em;
+  transition: var(--trans);
+}
+.chip:hover { background: var(--accent-pale); color: var(--accent); border-color: var(--accent-mid); }
+.chip.accent { background: var(--accent-pale); color: var(--accent); border-color: var(--accent-mid); }
+.project-links { display: flex; gap: 8px; margin-top: auto; }
+.project-link {
+  flex: 1; text-align: center;
+  font-size: 12px; font-weight: 500;
+  padding: 7px; border-radius: 8px;
+  border: 1px solid var(--border-2);
+  color: var(--ink-3); background: var(--bg);
+  transition: var(--trans); letter-spacing: 0.02em;
+}
+.project-link:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.project-link.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.project-link.primary:hover { background: var(--accent); border-color: var(--accent); }
+
+/* placeholder card */
+.project-placeholder {
+  background: var(--bg-2);
+  border: 1.5px dashed var(--border-2);
+  border-radius: var(--r-xl);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 300px;
+  transition: var(--trans);
+}
+.project-placeholder:hover { border-color: var(--accent-mid); background: var(--accent-pale); }
+.placeholder-inner { text-align: center; }
+.placeholder-inner p { font-size: 13px; color: var(--ink-4); margin-top: 8px; }
+.plus-icon { font-size: 28px; color: var(--ink-4); line-height: 1; }
+
+/* ─────────────────────────────────────────
+   EXPERIENCE
+───────────────────────────────────────── */
+.exp-bg { background: var(--bg-2); }
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before {
+  content: ''; position: absolute;
+  left: 0; top: 8px; bottom: 8px;
+  width: 1px; background: var(--border-2);
+}
+.timeline-item { position: relative; padding-bottom: 2.5rem; }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-dot {
+  position: absolute; left: -2.5rem;
+  top: 6px; width: 9px; height: 9px;
+  border-radius: 50%; background: var(--surface);
+  border: 2px solid var(--accent); box-shadow: 0 0 0 3px var(--bg-2);
+  transition: var(--trans);
+}
+.timeline-item:hover .timeline-dot { background: var(--accent); }
+.timeline-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--trans);
+}
+.timeline-card:hover { box-shadow: var(--shadow); border-color: var(--border-2); }
+.tl-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
+.tl-org { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+.tl-role { font-family: 'Instrument Serif', serif; font-size: 20px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; line-height: 1.2; }
+.tl-date {
+  font-size: 11px; font-weight: 500; white-space: nowrap;
+  padding: 4px 10px; border-radius: 100px;
+  background: var(--bg-2); color: var(--ink-4);
+  border: 1px solid var(--border); letter-spacing: 0.03em;
+}
+.tl-desc { font-size: 13px; color: var(--ink-3); line-height: 1.7; margin-top: 0.75rem; }
+.tl-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 1rem; }
+
+/* ─────────────────────────────────────────
+   EDUCATION
+───────────────────────────────────────── */
+.edu-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  display: grid; grid-template-columns: 56px 1fr;
+  gap: 1.5rem; align-items: start;
+  transition: var(--trans);
+}
+.edu-card:hover { box-shadow: var(--shadow); border-color: var(--border-2); transform: translateY(-1px); }
+.edu-logo {
+  width: 56px; height: 56px; border-radius: 12px;
+  background: var(--accent-pale);
+  border: 1px solid var(--accent-mid);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px; font-weight: 400; color: var(--accent);
+}
+.edu-degree { font-family: 'Instrument Serif', serif; font-size: 22px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; margin-bottom: 3px; }
+.edu-school { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 6px; }
+.edu-meta { font-size: 13px; color: var(--ink-3); line-height: 1.7; }
+.edu-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+
+/* ─────────────────────────────────────────
+   SKILLS
+───────────────────────────────────────── */
+.skills-bg { background: var(--bg-2); }
+.skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.skills-group {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--trans);
+}
+.skills-group:hover { box-shadow: var(--shadow); }
+.skills-group-label {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-4); margin-bottom: 1rem;
+  padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);
+}
+.chips-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* ─────────────────────────────────────────
+   CERTIFICATIONS
+───────────────────────────────────────── */
+.certs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+
+.cert-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--trans);
+  display: flex; flex-direction: column;
+  cursor: pointer;
+}
+.cert-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-3px);
+  border-color: var(--border-2);
+}
+.cert-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* thumbnail strip */
+.cert-thumb {
+  width: 100%; height: 120px;
+  overflow: hidden;
+  background: var(--bg-2);
+  position: relative;
+  flex-shrink: 0;
+}
+.cert-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(15%);
+  transition: transform 0.35s ease, filter 0.35s ease;
+  loading: lazy;
+}
+.cert-card:hover .cert-thumb img {
+  transform: scale(1.04);
+  filter: grayscale(0%);
+}
+.cert-thumb-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--bg-2) 0%, var(--bg-3) 100%);
+}
+.cert-thumb-placeholder svg { width: 32px; height: 32px; color: var(--ink-4); opacity: 0.5; }
+.cert-thumb-zoom {
+  position: absolute; bottom: 8px; right: 8px;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 3px 8px; border-radius: 4px;
+  opacity: 0; transition: opacity 0.2s;
+  backdrop-filter: blur(4px);
+}
+.cert-card:hover .cert-thumb-zoom { opacity: 1; }
+
+/* body */
+.cert-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; }
+
+/* issuer logo row */
+.cert-issuer-row {
+  display: flex; align-items: center; gap: 7px;
+  margin-bottom: 8px;
+}
+.cert-logo {
+  height: 18px; width: auto;
+  filter: grayscale(100%) opacity(0.55);
+  transition: filter 0.25s;
+  flex-shrink: 0;
+}
+.cert-card:hover .cert-logo { filter: grayscale(40%) opacity(0.85); }
+.cert-issuer-text {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.cert-name {
+  font-size: 13px; font-weight: 500;
+  color: var(--ink); line-height: 1.4;
+  margin-bottom: 5px; flex: 1;
+}
+.cert-date { font-size: 11px; color: var(--ink-4); margin-bottom: 10px; }
+
+/* action buttons */
+.cert-actions {
+  display: flex; gap: 6px; margin-top: auto;
+}
+.cert-btn {
+  flex: 1; text-align: center;
+  font-size: 11px; font-weight: 500;
+  padding: 6px 8px; border-radius: 7px;
+  border: 1px solid var(--border-2);
+  color: var(--ink-3); background: var(--bg);
+  transition: var(--trans); letter-spacing: 0.02em;
+  cursor: pointer; white-space: nowrap;
+  font-family: inherit;
+}
+.cert-btn:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.cert-btn.verify { color: var(--accent); border-color: var(--accent-mid); background: var(--accent-pale); }
+.cert-btn.verify:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ── CERT MODAL ── */
+.cert-modal-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  align-items: center; justify-content: center;
+  padding: 1.5rem;
+  animation: overlayIn 0.2s ease;
+}
+.cert-modal-overlay.open { display: flex; }
+@keyframes overlayIn { from{opacity:0} to{opacity:1} }
+
+.cert-modal {
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-xl);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+  width: 100%; max-width: 680px;
+  max-height: 90vh;
+  display: flex; flex-direction: column;
+  animation: modalIn 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  overflow: hidden;
+}
+@keyframes modalIn { from{opacity:0;transform:scale(0.95) translateY(12px)} to{opacity:1;transform:scale(1) translateY(0)} }
+
+.cert-modal-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.cert-modal-meta { flex: 1; min-width: 0; }
+.cert-modal-issuer {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 2px;
+}
+.cert-modal-title {
+  font-size: 14px; font-weight: 500;
+  color: var(--ink); line-height: 1.35;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.cert-modal-close {
+  width: 32px; height: 32px; border-radius: 8px;
+  border: 1px solid var(--border-2);
+  background: var(--bg-2); color: var(--ink-3);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 16px; line-height: 1;
+  transition: var(--trans); flex-shrink: 0; margin-left: 1rem;
+  font-family: inherit;
+}
+.cert-modal-close:hover { background: var(--ink); color: var(--bg); }
+
+.cert-modal-body {
+  flex: 1; overflow-y: auto; overflow-x: hidden;
+  padding: 1.25rem;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.cert-modal-img-wrap {
+  width: 100%; border-radius: var(--r);
+  overflow: hidden; border: 1px solid var(--border);
+  background: var(--bg-2);
+  position: relative;
+}
+.cert-modal-img-wrap img {
+  width: 100%; height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+.zoom-controls {
+  display: flex; justify-content: center; gap: 8px;
+}
+.zoom-btn {
+  font-size: 12px; font-weight: 500;
+  padding: 6px 14px; border-radius: 7px;
+  border: 1px solid var(--border-2);
+  background: var(--bg-2); color: var(--ink-3);
+  cursor: pointer; transition: var(--trans); font-family: inherit;
+}
+.zoom-btn:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+.cert-modal-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border);
+  display: flex; gap: 8px; flex-shrink: 0;
+}
+.cert-modal-footer .cert-btn { font-size: 12px; padding: 8px 12px; }
+
+/* scrollbar in modal */
+.cert-modal-body::-webkit-scrollbar { width: 4px; }
+.cert-modal-body::-webkit-scrollbar-track { background: transparent; }
+.cert-modal-body::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 4px; }
+
+/* ─────────────────────────────────────────
+   CONTACT / FOOTER
+───────────────────────────────────────── */
+.contact-bg { background: var(--ink); color: var(--bg); }
+[data-theme="dark"] .contact-bg { background: var(--bg-3); }
+.contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.contact-headline {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 400; line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--bg);
+  margin-bottom: 1rem;
+}
+[data-theme="dark"] .contact-headline { color: var(--ink); }
+.contact-headline em { font-style: italic; color: var(--accent-2); }
+.contact-sub { font-size: 14px; color: rgba(250,250,248,0.5); line-height: 1.75; }
+[data-theme="dark"] .contact-sub { color: var(--ink-3); }
+.contact-links-list { display: flex; flex-direction: column; gap: 8px; }
+.contact-link-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: var(--r);
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  transition: var(--trans);
+  color: rgba(250,250,248,0.7);
+  font-size: 13px;
+}
+[data-theme="dark"] .contact-link-item { border-color: var(--border); background: var(--surface); color: var(--ink-3); }
+.contact-link-item:hover { background: rgba(255,255,255,0.08); color: rgba(250,250,248,0.95); border-color: rgba(255,255,255,0.15); transform: translateX(4px); }
+[data-theme="dark"] .contact-link-item:hover { background: var(--bg-2); color: var(--ink); border-color: var(--border-2); }
+.cl-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); min-width: 64px; }
+[data-theme="dark"] .cl-label { color: var(--ink-4); }
+.cl-value { font-weight: 500; }
+.cl-arrow { font-size: 12px; opacity: 0.4; }
+footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 1.5rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+[data-theme="dark"] footer { background: var(--bg-2); border-top-color: var(--border); }
+.footer-name {
+  font-family: 'Instrument Serif', serif;
+  font-size: 15px; color: rgba(250,250,248,0.4);
+}
+[data-theme="dark"] .footer-name { color: var(--ink-4); }
+.footer-right { font-size: 12px; color: rgba(250,250,248,0.25); }
+[data-theme="dark"] .footer-right { color: var(--ink-4); }
+
+/* ─────────────────────────────────────────
+   SCROLL ANIMATIONS
+───────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s cubic-bezier(0.4,0,0.2,1), transform 0.55s cubic-bezier(0.4,0,0.2,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.05s; }
+.reveal-d2 { transition-delay: 0.10s; }
+.reveal-d3 { transition-delay: 0.15s; }
+.reveal-d4 { transition-delay: 0.20s; }
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-cta { display: none; }
+  .nav { padding: 0 1.25rem; }
+  .container { padding: 0 1.25rem; }
+  .section { padding: 4rem 0; }
+  .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-avatar { width: 100px; height: 100px; font-size: 28px; order: -1; }
+  .hero h1 { font-size: clamp(38px,9vw,52px); }
+  .currently-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .skills-layout { grid-template-columns: 1fr; }
+  .certs-grid { grid-template-columns: 1fr 1fr; }
+  .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .edu-card { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 6px; text-align: center; padding: 1.25rem; }
+}
+@media (max-width: 480px) {
+  .certs-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; }
+  .btn { justify-content: center; }
+}
+
+/* ─────────────────────────────────────────
+   DIVIDER
+───────────────────────────────────────── */
+.divider { height: 1px; background: var(--border); }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">Vada<span>mihad</span></a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certs</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" id="theme-btn" aria-label="Toggle dark mode">
+      <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a href="#contact" class="nav-cta">Contact →</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#projects" onclick="closeMobile()">Projects</a>
+  <a href="#experience" onclick="closeMobile()">Experience</a>
+  <a href="#education" onclick="closeMobile()">Education</a>
+  <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#certifications" onclick="closeMobile()">Certifications</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge"><span></span> Open to collaboration</div>
+        <h1>
+          Agronomy<br>
+          meets <em>AI</em> &<br>
+          Data Science
+        </h1>
+        <p class="hero-sub">
+          Vadamihad — Undergraduate Agronomy at Universitas Gadjah Mada.
+          Bridging precision agriculture, GIS, IoT, and machine learning to build a smarter food system.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+          <a href="#" class="btn btn-secondary">Download CV</a>
+        </div>
+      </div>
+      <div class="hero-avatar">VM</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CURRENTLY ── -->
+<div class="currently">
+  <div class="container">
+    <div class="currently-grid">
+      <div class="currently-card reveal">
+        <div class="c-label"><span class="c-dot"></span>Currently</div>
+        <div class="c-title">Plantation Intern</div>
+        <div class="c-sub">PT. Perkebunan Tambi · Wonosobo</div>
+      </div>
+      <div class="currently-card reveal reveal-d1">
+        <div class="c-label"><span class="c-dot"></span>Member of</div>
+        <div class="c-title">IMAGRO UGM</div>
+        <div class="c-sub">Expert Staff · Ministry of Interests & Talents</div>
+      </div>
+      <div class="currently-card reveal reveal-d2">
+        <div class="c-label"><span class="c-dot"></span>Learning</div>
+        <div class="c-title">AI for Agriculture</div>
+        <div class="c-sub">GIS · IoT Sensing · Data Analysis with R</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ── PROJECTS ── -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">Selected work</div>
+      <h2 class="sec-title">Featured <em>Projects</em></h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal reveal-d1">
+        <div class="project-thumb" style="background:linear-gradient(135deg,#EBF4E9,#D4EBCF)">
+          <div class="project-thumb-inner">GIS</div>
+          <span class="project-thumb-badge">Research</span>
+        </div>
+        <div class="project-body">
+          <div class="project-role">GIS Analysis · 2025</div>
+          <div class="project-title">Land Suitability Mapping for Sustainable Crops</div>
+          <div class="project-desc">Spatial analysis using GIS to evaluate land suitability for key agricultural commodities, integrating soil data, climate parameters, and topographic factors.</div>
+          <div class="project-stack">
+            <span class="chip accent">GIS</span>
+            <span class="chip">Spatial Analysis</span>
+            <span class="chip">Remote Sensing</span>
+            <span class="chip">ArcGIS</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link primary">View Project ↗</a>
+            <a href="#" class="project-link">Source Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-d2">
+        <div class="project-thumb" style="background:linear-gradient(135deg,#EEF3FB,#D8E8F8)">
+          <div class="project-thumb-inner" style="color:#3A6EA8">IoT</div>
+          <span class="project-thumb-badge">Tech + Agri</span>
+        </div>
+        <div class="project-body">
+          <div class="project-role">IoT Development · 2025</div>
+          <div class="project-title">Smart Crop Monitoring System with IoT Sensors</div>
+          <div class="project-desc">Deployed sensor-based system for real-time monitoring of soil moisture, temperature, and humidity. Data logged and visualized for decision support in precision farming.</div>
+          <div class="project-stack">
+            <span class="chip accent">IoT</span>
+            <span class="chip">Precision Agri</span>
+            <span class="chip">Data Logging</span>
+            <span class="chip">R</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link primary">View Project ↗</a>
+            <a href="#" class="project-link">Source Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-placeholder reveal reveal-d3">
+        <div class="placeholder-inner">
+          <div class="plus-icon">+</div>
+          <p>Your next project</p>
+        </div>
+      </div>
+
+      <div class="project-placeholder reveal reveal-d4">
+        <div class="placeholder-inner">
+          <div class="plus-icon">+</div>
+          <p>Your next project</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── EXPERIENCE ── -->
+<section class="section exp-bg" id="experience">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">Career path</div>
+      <h2 class="sec-title">Work <em>Experience</em></h2>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="tl-top">
+            <div>
+              <div class="tl-org">PT. Perkebunan Tambi</div>
+              <div class="tl-role">Plantation Intern</div>
+            </div>
+            <span class="tl-date">Feb 2026 – Present</span>
+          </div>
+          <div class="tl-desc">Hands-on internship at a tea and coffee plantation in Wonosobo, Central Java. Gaining practical field experience in plantation crop management, harvesting protocols, and agri-operational systems.</div>
+          <div class="tl-tags">
+            <span class="chip">Plantation Management</span>
+            <span class="chip">Field Operations</span>
+            <span class="chip">On-site · Wonosobo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal reveal-d1">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="tl-top">
+            <div>
+              <div class="tl-org">Dinas Pertanian Kabupaten Wonosobo</div>
+              <div class="tl-role">Office Staff Intern</div>
+            </div>
+            <span class="tl-date">Jun – Jul 2025</span>
+          </div>
+          <div class="tl-desc">Supported the Wonosobo Regency Agriculture Office in administrative coordination, agricultural program documentation, and field data collection activities aligned with local government agricultural initiatives.</div>
+          <div class="tl-tags">
+            <span class="chip">Government Agriculture</span>
+            <span class="chip">Field Coordination</span>
+            <span class="chip">Data Collection</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal reveal-d2">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="tl-top">
+            <div>
+              <div class="tl-org">IMAGRO UGM</div>
+              <div class="tl-role">Expert Staff — Ministry of Interests & Talents</div>
+            </div>
+            <span class="tl-date">May 2024 – Present</span>
+          </div>
+          <div class="tl-desc">Serving as expert staff within IMAGRO (Ikatan Mahasiswa Agronomi dan Pemuliaan Tanaman UGM). Responsible for developing student potential, organizing talent development programs, and coordinating extracurricular initiatives within the faculty organization.</div>
+          <div class="tl-tags">
+            <span class="chip accent">Student Organization</span>
+            <span class="chip">Leadership</span>
+            <span class="chip">Program Development</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal reveal-d3">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="tl-top">
+            <div>
+              <div class="tl-org">IMAGRO UGM — AGROGAME</div>
+              <div class="tl-role">Official Committee of Security</div>
+            </div>
+            <span class="tl-date">Oct 2024 – Present</span>
+          </div>
+          <div class="tl-desc">Security committee lead for AGROGAME, a large-scale annual event organized by IMAGRO UGM. Managed crowd safety protocols, coordinated event security logistics, and ensured the smooth running of activities across event venues.</div>
+          <div class="tl-tags">
+            <span class="chip">Event Management</span>
+            <span class="chip">Security Coordination</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal reveal-d4">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="tl-top">
+            <div>
+              <div class="tl-org">Universitas Gadjah Mada</div>
+              <div class="tl-role">KKN-PPM — Bumi Hiri</div>
+            </div>
+            <span class="tl-date">2024</span>
+          </div>
+          <div class="tl-desc">Community service program (Kuliah Kerja Nyata – Pembelajaran Pemberdayaan Masyarakat). Applied academic and technical agricultural knowledge to empower rural communities, supporting local food security and sustainable practices.</div>
+          <div class="tl-tags">
+            <span class="chip">Community Empowerment</span>
+            <span class="chip">Sustainable Agriculture</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── EDUCATION ── -->
+<section class="section" id="education">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">Academic background</div>
+      <h2 class="sec-title">Education</h2>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-logo">UGM</div>
+      <div>
+        <div class="edu-degree">S1 Agronomi</div>
+        <div class="edu-school">Universitas Gadjah Mada</div>
+        <div class="edu-meta">Fakultas Pertanian · Yogyakarta, Indonesia · 2023 – Present</div>
+        <div class="edu-meta" style="margin-top:6px">Focused on precision agriculture, crop physiology, plant breeding, and the integration of modern technologies including GIS, AI, and IoT for smarter agricultural systems.</div>
+        <div class="edu-tags">
+          <span class="chip accent">Agronomi</span>
+          <span class="chip">Fisiologi Tanaman</span>
+          <span class="chip">Pemuliaan Tanaman</span>
+          <span class="chip">Teknologi Pertanian</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── SKILLS ── -->
+<section class="section skills-bg" id="skills">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">What I work with</div>
+      <h2 class="sec-title">Skills & <em>Tools</em></h2>
+    </div>
+    <div class="skills-layout">
+      <div class="skills-group reveal">
+        <div class="skills-group-label">Agronomy & Field</div>
+        <div class="chips-wrap">
+          <span class="chip accent">Agronomi</span>
+          <span class="chip">Crop Physiology</span>
+          <span class="chip">Plant Breeding</span>
+          <span class="chip">Soil Science</span>
+          <span class="chip">Precision Agriculture</span>
+          <span class="chip">Sustainable Farming</span>
+        </div>
+      </div>
+      <div class="skills-group reveal reveal-d1">
+        <div class="skills-group-label">Data & Analysis</div>
+        <div class="chips-wrap">
+          <span class="chip accent">RStudio / R</span>
+          <span class="chip">Microsoft Power BI</span>
+          <span class="chip">Data Analysis</span>
+          <span class="chip">Data Visualization</span>
+          <span class="chip">Microsoft Office</span>
+        </div>
+      </div>
+      <div class="skills-group reveal reveal-d2">
+        <div class="skills-group-label">Technology</div>
+        <div class="chips-wrap">
+          <span class="chip accent">GIS / ArcGIS</span>
+          <span class="chip">Remote Sensing</span>
+          <span class="chip">IoT Farming</span>
+          <span class="chip">AI / Machine Learning</span>
+          <span class="chip">Sensor Systems</span>
+        </div>
+      </div>
+      <div class="skills-group reveal reveal-d3">
+        <div class="skills-group-label">Soft Skills</div>
+        <div class="chips-wrap">
+          <span class="chip">Leadership</span>
+          <span class="chip">Team Coordination</span>
+          <span class="chip">Critical Thinking</span>
+          <span class="chip">Communication</span>
+          <span class="chip">Event Management</span>
+          <span class="chip">Research & Analysis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── CERTIFICATIONS ── -->
+<section class="section" id="certifications">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">Credentials</div>
+      <h2 class="sec-title">Licenses & <em>Certifications</em></h2>
+    </div>
+    <div class="certs-grid">
+
+      <!-- 1. IBM AI -->
+      <div class="cert-card reveal" tabindex="0"
+           data-title="Introduction to Artificial Intelligence (AI)"
+           data-issuer="IBM"
+           data-date="Jul 2025 · ID: SATUM6NKSI6G"
+           data-thumb="certificates/ibm-ai-thumbnail.jpg"
+           data-full="certificates/ibm-ai-certificate.pdf"
+           data-verify="https://coursera.org/verify/SATUM6NKSI6G">
+        <div class="cert-thumb">
+          <img src="certificates/ibm-ai-thumbnail.jpg"
+               alt="IBM AI Certificate thumbnail"
+               loading="lazy"
+               onerror="this.parentNode.innerHTML='<div class=\'cert-thumb-placeholder\'><svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'14\' rx=\'2\'/><path d=\'M8 21h8M12 17v4\'/></svg></div>'">
+          <span class="cert-thumb-zoom">Click to view</span>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer-row">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
+                 alt="IBM" class="cert-logo"
+                 onerror="this.style.display='none'">
+            <span class="cert-issuer-text">IBM</span>
+          </div>
+          <div class="cert-name">Introduction to Artificial Intelligence (AI)</div>
+          <div class="cert-date">Jul 2025 · SATUM6NKSI6G</div>
+          <div class="cert-actions">
+            <button class="cert-btn view-btn">View Certificate</button>
+            <a href="https://coursera.org/verify/SATUM6NKSI6G" target="_blank" rel="noopener" class="cert-btn verify">Verify ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. U-Michigan GIS -->
+      <div class="cert-card reveal reveal-d1" tabindex="0"
+           data-title="GIS: Geographic Information Systems for Sustainability"
+           data-issuer="University of Michigan"
+           data-date="Jul 2025 · ID: M2QA0AXS242K"
+           data-thumb="certificates/gis-michigan-thumbnail.jpg"
+           data-full="certificates/gis-michigan-certificate.pdf"
+           data-verify="https://coursera.org/verify/M2QA0AXS242K">
+        <div class="cert-thumb">
+          <img src="certificates/gis-michigan-thumbnail.jpg"
+               alt="GIS Certificate thumbnail"
+               loading="lazy"
+               onerror="this.parentNode.innerHTML='<div class=\'cert-thumb-placeholder\'><svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'14\' rx=\'2\'/><path d=\'M8 21h8M12 17v4\'/></svg></div>'">
+          <span class="cert-thumb-zoom">Click to view</span>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer-row">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Coursera-Logo_600x600.svg"
+                 alt="Coursera" class="cert-logo"
+                 onerror="this.style.display='none'">
+            <span class="cert-issuer-text">University of Michigan</span>
+          </div>
+          <div class="cert-name">GIS: Geographic Information Systems for Sustainability</div>
+          <div class="cert-date">Jul 2025 · M2QA0AXS242K</div>
+          <div class="cert-actions">
+            <button class="cert-btn view-btn">View Certificate</button>
+            <a href="https://coursera.org/verify/M2QA0AXS242K" target="_blank" rel="noopener" class="cert-btn verify">Verify ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. IoT Enabled Farming -->
+      <div class="cert-card reveal reveal-d2" tabindex="0"
+           data-title="IoT Enabled Farming"
+           data-issuer="EDUCBA"
+           data-date="Jul 2025 · ID: WZ7M9NYSUQ9H"
+           data-thumb="certificates/iot-farming-thumbnail.jpg"
+           data-full="certificates/iot-farming-certificate.pdf"
+           data-verify="">
+        <div class="cert-thumb">
+          <img src="certificates/iot-farming-thumbnail.jpg"
+               alt="IoT Farming Certificate thumbnail"
+               loading="lazy"
+               onerror="this.parentNode.innerHTML='<div class=\'cert-thumb-placeholder\'><svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'14\' rx=\'2\'/><path d=\'M8 21h8M12 17v4\'/></svg></div>'">
+          <span class="cert-thumb-zoom">Click to view</span>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer-row">
+            <span class="cert-issuer-text">EDUCBA</span>
+          </div>
+          <div class="cert-name">IoT Enabled Farming</div>
+          <div class="cert-date">Jul 2025 · WZ7M9NYSUQ9H</div>
+          <div class="cert-actions">
+            <button class="cert-btn view-btn">View Certificate</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Google Data Foundations -->
+      <div class="cert-card reveal reveal-d3" tabindex="0"
+           data-title="Foundations: Data, Data, Everywhere"
+           data-issuer="Google · Coursera"
+           data-date="Jun 2025 · ID: O8Z6Q6DHV78K"
+           data-thumb="certificates/google-data-thumbnail.jpg"
+           data-full="certificates/google-data-certificate.pdf"
+           data-verify="https://coursera.org/verify/O8Z6Q6DHV78K">
+        <div class="cert-thumb">
+          <img src="certificates/google-data-thumbnail.jpg"
+               alt="Google Data Certificate thumbnail"
+               loading="lazy"
+               onerror="this.parentNode.innerHTML='<div class=\'cert-thumb-placeholder\'><svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'14\' rx=\'2\'/><path d=\'M8 21h8M12 17v4\'/></svg></div>'">
+          <span class="cert-thumb-zoom">Click to view</span>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer-row">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Coursera-Logo_600x600.svg"
+                 alt="Coursera" class="cert-logo"
+                 onerror="this.style.display='none'">
+            <span class="cert-issuer-text">Google · Coursera</span>
+          </div>
+          <div class="cert-name">Foundations: Data, Data, Everywhere</div>
+          <div class="cert-date">Jun 2025 · O8Z6Q6DHV78K</div>
+          <div class="cert-actions">
+            <button class="cert-btn view-btn">View Certificate</button>
+            <a href="https://coursera.org/verify/O8Z6Q6DHV78K" target="_blank" rel="noopener" class="cert-btn verify">Verify ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. R Programming -->
+      <div class="cert-card reveal reveal-d4" tabindex="0"
+           data-title="Data Analysis in Business with R Programming"
+           data-issuer="Coursera"
+           data-date="Oct 2022 · ID: NRKAXQXJ326W"
+           data-thumb="certificates/r-programming-thumbnail.jpg"
+           data-full="certificates/r-programming-certificate.pdf"
+           data-verify="https://coursera.org/verify/NRKAXQXJ326W">
+        <div class="cert-thumb">
+          <img src="certificates/r-programming-thumbnail.jpg"
+               alt="R Programming Certificate thumbnail"
+               loading="lazy"
+               onerror="this.parentNode.innerHTML='<div class=\'cert-thumb-placeholder\'><svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'14\' rx=\'2\'/><path d=\'M8 21h8M12 17v4\'/></svg></div>'">
+          <span class="cert-thumb-zoom">Click to view</span>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer-row">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Coursera-Logo_600x600.svg"
+                 alt="Coursera" class="cert-logo"
+                 onerror="this.style.display='none'">
+            <span class="cert-issuer-text">Coursera</span>
+          </div>
+          <div class="cert-name">Data Analysis in Business with R Programming</div>
+          <div class="cert-date">Oct 2022 · NRKAXQXJ326W</div>
+          <div class="cert-actions">
+            <button class="cert-btn view-btn">View Certificate</button>
+            <a href="https://coursera.org/verify/NRKAXQXJ326W" target="_blank" rel="noopener" class="cert-btn verify">Verify ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Power BI -->
+      <div class="cert-card reveal reveal-d4" tabindex="0"
+           data-title="Prepare, Clean, Transform &amp; Load Data using Power BI"
+           data-issuer="Coursera"
+           data-date="Oct 2022 · ID: K58NVZRCZT7S"
+           data-thumb="certificates/powerbi-thumbnail.jpg"
+           data-full="certificates/powerbi-certificate.pdf"
+           data-verify="https://coursera.org/verify/K58NVZRCZT7S">
+        <div class="cert-thumb">
+          <img src="certificates/powerbi-thumbnail.jpg"
+               alt="Power BI Certificate thumbnail"
+               loading="lazy"
+               onerror="this.parentNode.innerHTML='<div class=\'cert-thumb-placeholder\'><svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'14\' rx=\'2\'/><path d=\'M8 21h8M12 17v4\'/></svg></div>'">
+          <span class="cert-thumb-zoom">Click to view</span>
+        </div>
+        <div class="cert-body">
+          <div class="cert-issuer-row">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Coursera-Logo_600x600.svg"
+                 alt="Coursera" class="cert-logo"
+                 onerror="this.style.display='none'">
+            <span class="cert-issuer-text">Coursera</span>
+          </div>
+          <div class="cert-name">Prepare, Clean, Transform &amp; Load Data using Power BI</div>
+          <div class="cert-date">Oct 2022 · K58NVZRCZT7S</div>
+          <div class="cert-actions">
+            <button class="cert-btn view-btn">View Certificate</button>
+            <a href="https://coursera.org/verify/K58NVZRCZT7S" target="_blank" rel="noopener" class="cert-btn verify">Verify ↗</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CERTIFICATE MODAL ── -->
+<div class="cert-modal-overlay" id="cert-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title">
+  <div class="cert-modal" id="cert-modal">
+    <div class="cert-modal-header">
+      <div class="cert-modal-meta">
+        <div class="cert-modal-issuer" id="cert-modal-issuer"></div>
+        <div class="cert-modal-title" id="cert-modal-title"></div>
+      </div>
+      <button class="cert-modal-close" id="cert-modal-close" aria-label="Close modal">&#x2715;</button>
+    </div>
+    <div class="cert-modal-body">
+      <div class="cert-modal-img-wrap">
+        <img id="cert-modal-img" src="" alt="Certificate preview">
+      </div>
+      <div class="zoom-controls">
+        <button class="zoom-btn" id="zoom-out">− Zoom Out</button>
+        <button class="zoom-btn" id="zoom-reset">Reset</button>
+        <button class="zoom-btn" id="zoom-in">+ Zoom In</button>
+      </div>
+    </div>
+    <div class="cert-modal-footer" id="cert-modal-footer"></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ── CONTACT ── -->
+<section class="section contact-bg" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="reveal">
+        <h2 class="contact-headline">Let's grow<br>something <em>together.</em></h2>
+        <p class="contact-sub">Open to research collaborations, precision agriculture projects, or any intersection of agronomy and technology. Always happy to connect.</p>
+      </div>
+      <div class="reveal reveal-d2">
+        <ul class="contact-links-list">
+          <li>
+            <a href="mailto:your@email.com" class="contact-link-item">
+              <span class="cl-label">Email</span>
+              <span class="cl-value">your@email.com</span>
+              <span class="cl-arrow">↗</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://linkedin.com/in/vadamihad" target="_blank" class="contact-link-item">
+              <span class="cl-label">LinkedIn</span>
+              <span class="cl-value">linkedin.com/in/vadamihad</span>
+              <span class="cl-arrow">↗</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/vadamihad" target="_blank" class="contact-link-item">
+              <span class="cl-label">GitHub</span>
+              <span class="cl-value">github.com/vadamihad</span>
+              <span class="cl-arrow">↗</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://instagram.com/tambi.sendiri" target="_blank" class="contact-link-item">
+              <span class="cl-label">Instagram</span>
+              <span class="cl-value">@tambi.sendiri</span>
+              <span class="cl-arrow">↗</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">Vadamihad</span>
+  <span class="footer-right">Agronomi · UGM · Yogyakarta · <span id="year"></span></span>
+</footer>
+
+<!-- ── SCRIPTS ── -->
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Dark mode
+  const btn = document.getElementById('theme-btn');
+  const sun = document.getElementById('icon-sun');
+  const moon = document.getElementById('icon-moon');
+  const saved = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  sun.style.display = saved === 'dark' ? 'block' : 'none';
+  moon.style.display = saved === 'light' ? 'block' : 'none';
+  btn.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    sun.style.display = next === 'dark' ? 'block' : 'none';
+    moon.style.display = next === 'light' ? 'block' : 'none';
+  });
+
+  // Mobile menu
+  const ham = document.getElementById('hamburger');
+  const menu = document.getElementById('mobile-menu');
+  ham.addEventListener('click', () => menu.classList.toggle('open'));
+  function closeMobile() { menu.classList.remove('open'); }
+  document.addEventListener('click', (e) => {
+    if (!ham.contains(e.target) && !menu.contains(e.target)) menu.classList.remove('open');
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const ro = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+  revealEls.forEach(el => ro.observe(el));
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').style.boxShadow =
+      window.scrollY > 20 ? '0 1px 12px rgba(0,0,0,0.07)' : 'none';
+  }, { passive: true });
+
+  // ── CERTIFICATE MODAL ──
+  const overlay    = document.getElementById('cert-modal-overlay');
+  const modalImg   = document.getElementById('cert-modal-img');
+  const modalTitle = document.getElementById('cert-modal-title');
+  const modalIssuer= document.getElementById('cert-modal-issuer');
+  const modalFooter= document.getElementById('cert-modal-footer');
+  const closeBtn   = document.getElementById('cert-modal-close');
+  let zoomLevel = 1;
+
+  function openModal(card) {
+    const title   = card.dataset.title;
+    const issuer  = card.dataset.issuer;
+    const full    = card.dataset.full;
+    const thumb   = card.dataset.thumb;
+    const verify  = card.dataset.verify;
+    const date    = card.dataset.date;
+
+    modalTitle.textContent  = title;
+    modalIssuer.textContent = issuer;
+
+    // Use full PDF as image src if available (browsers render first page),
+    // fall back to thumbnail
+    modalImg.src = full || thumb;
+    modalImg.alt = title + ' certificate';
+    modalImg.style.transform = 'scale(1)';
+    zoomLevel = 1;
+
+    // Footer buttons
+    let footerHTML = '';
+    if (full)   footerHTML += `<a href="${full}" download class="cert-btn" style="flex:1;display:flex;align-items:center;justify-content:center;gap:5px">⬇ Download PDF</a>`;
+    if (verify) footerHTML += `<a href="${verify}" target="_blank" rel="noopener" class="cert-btn verify" style="flex:1;display:flex;align-items:center;justify-content:center">Verify Credential ↗</a>`;
+    modalFooter.innerHTML = footerHTML;
+
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    zoomLevel = 1;
+    modalImg.style.transform = 'scale(1)';
+  }
+
+  // Zoom controls
+  document.getElementById('zoom-in').addEventListener('click', () => {
+    zoomLevel = Math.min(zoomLevel + 0.25, 3);
+    modalImg.style.transform = `scale(${zoomLevel})`;
+    modalImg.style.transformOrigin = 'top center';
+  });
+  document.getElementById('zoom-out').addEventListener('click', () => {
+    zoomLevel = Math.max(zoomLevel - 0.25, 0.5);
+    modalImg.style.transform = `scale(${zoomLevel})`;
+  });
+  document.getElementById('zoom-reset').addEventListener('click', () => {
+    zoomLevel = 1;
+    modalImg.style.transform = 'scale(1)';
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+
+  // Close on overlay click (not modal itself)
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+
+  // Keyboard: Escape to close
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  // Wire up cards
+  document.querySelectorAll('.cert-card').forEach(card => {
+    // Click anywhere on card (except verify link) opens modal
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.verify')) return; // let verify link through
+      openModal(card);
+    });
+    // Keyboard Enter/Space
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(card); }
+    });
+    // View button specifically
+    const viewBtn = card.querySelector('.view-btn');
+    if (viewBtn) {
+      viewBtn.addEventListener('click', (e) => { e.stopPropagation(); openModal(card); });
+    }
+  });
+</script>
+</body>
+</html>
