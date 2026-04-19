@@ -1178,7 +1178,7 @@ footer {
            data-issuer="IBM"
            data-date="Jul 2025 · ID: SATUM6NKSI6G"
            data-thumb="certificates/ibm-ai-thumbnail.jpg"
-           data-full="certificates/ibm-ai-certificate.pdf"
+           data-full="certificates/ibm-ai-full.jpg"
            data-verify="https://coursera.org/verify/SATUM6NKSI6G">
         <div class="cert-thumb">
           <img src="certificates/ibm-ai-thumbnail.jpg"
@@ -1209,7 +1209,7 @@ footer {
            data-issuer="University of Michigan"
            data-date="Jul 2025 · ID: M2QA0AXS242K"
            data-thumb="certificates/gis-michigan-thumbnail.jpg"
-           data-full="certificates/gis-michigan-certificate.pdf"
+           data-full="certificates/gis-michigan-full.jpg"
            data-verify="https://coursera.org/verify/M2QA0AXS242K">
         <div class="cert-thumb">
           <img src="certificates/gis-michigan-thumbnail.jpg"
@@ -1240,7 +1240,7 @@ footer {
            data-issuer="EDUCBA"
            data-date="Jul 2025 · ID: WZ7M9NYSUQ9H"
            data-thumb="certificates/iot-farming-thumbnail.jpg"
-           data-full="certificates/iot-farming-certificate.pdf"
+           data-full="certificates/iot-farming-full.jpg"
            data-verify="">
         <div class="cert-thumb">
           <img src="certificates/iot-farming-thumbnail.jpg"
@@ -1267,7 +1267,7 @@ footer {
            data-issuer="Google · Coursera"
            data-date="Jun 2025 · ID: O8Z6Q6DHV78K"
            data-thumb="certificates/google-data-thumbnail.jpg"
-           data-full="certificates/google-data-certificate.pdf"
+           data-full="certificates/google-data-full.jpg"
            data-verify="https://coursera.org/verify/O8Z6Q6DHV78K">
         <div class="cert-thumb">
           <img src="certificates/google-data-thumbnail.jpg"
@@ -1298,7 +1298,7 @@ footer {
            data-issuer="Coursera"
            data-date="Oct 2022 · ID: NRKAXQXJ326W"
            data-thumb="certificates/r-programming-thumbnail.jpg"
-           data-full="certificates/r-programming-certificate.pdf"
+           data-full="certificates/r-programming-full.jpg"
            data-verify="https://coursera.org/verify/NRKAXQXJ326W">
         <div class="cert-thumb">
           <img src="certificates/r-programming-thumbnail.jpg"
@@ -1329,7 +1329,7 @@ footer {
            data-issuer="Coursera"
            data-date="Oct 2022 · ID: K58NVZRCZT7S"
            data-thumb="certificates/powerbi-thumbnail.jpg"
-           data-full="certificates/powerbi-certificate.pdf"
+           data-full="certificates/powerbi-full.jpg"
            data-verify="https://coursera.org/verify/K58NVZRCZT7S">
         <div class="cert-thumb">
           <img src="certificates/powerbi-thumbnail.jpg"
@@ -1487,26 +1487,23 @@ footer {
   let zoomLevel = 1;
 
   function openModal(card) {
-    const title   = card.dataset.title;
-    const issuer  = card.dataset.issuer;
-    const full    = card.dataset.full;
-    const thumb   = card.dataset.thumb;
-    const verify  = card.dataset.verify;
-    const date    = card.dataset.date;
+    const title  = card.dataset.title;
+    const issuer = card.dataset.issuer;
+    const full   = card.dataset.full;   // full-size JPG
+    const thumb  = card.dataset.thumb;  // thumbnail JPG (fallback)
+    const verify = card.dataset.verify;
 
     modalTitle.textContent  = title;
     modalIssuer.textContent = issuer;
 
-    // Use full PDF as image src if available (browsers render first page),
-    // fall back to thumbnail
+    // Always JPG — full-size preferred, thumbnail as fallback
     modalImg.src = full || thumb;
     modalImg.alt = title + ' certificate';
     modalImg.style.transform = 'scale(1)';
     zoomLevel = 1;
 
-    // Footer buttons
+    // Footer: verify only (no PDF — GitHub Pages blocks PDF embed)
     let footerHTML = '';
-    if (full)   footerHTML += `<a href="${full}" download class="cert-btn" style="flex:1;display:flex;align-items:center;justify-content:center;gap:5px">⬇ Download PDF</a>`;
     if (verify) footerHTML += `<a href="${verify}" target="_blank" rel="noopener" class="cert-btn verify" style="flex:1;display:flex;align-items:center;justify-content:center">Verify Credential ↗</a>`;
     modalFooter.innerHTML = footerHTML;
 
